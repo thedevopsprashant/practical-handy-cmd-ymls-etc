@@ -116,6 +116,10 @@ run_step "Docker" install_docker
 add_user_to_docker_group() {
     sudo usermod -aG docker "$USER"
     sudo usermod -aG docker ${USER} #To login again: sudo su, sudo su ubuntu
+    sudo usermod -aG docker jenkins
+    sudo usermod -aG docker ubuntu
+    sudo systemctl restart docker
+    sudo chmod 777 /var/run/docker.sock
     echo "⚠️  You may need to log out and log back in for docker group changes to take effect."
 }
 run_step "Add user to docker group" add_user_to_docker_group
