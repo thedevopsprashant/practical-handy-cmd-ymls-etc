@@ -1,0 +1,31 @@
+# pass this as values.yaml in the helm install command
+# this will expose Prometheus, grafana, alert manager as LoadBalancer
+grafana:
+  enabled: true
+  adminPassword: admin123
+
+  service:
+    type: LoadBalancer
+    port: 80
+    targetPort: 3000
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+      service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+
+prometheus:
+  service:
+    type: LoadBalancer
+    port: 80
+    targetPort: 9090
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+      service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+
+alertmanager:
+  service:
+    type: LoadBalancer
+    port: 80
+    targetPort: 9093
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+      service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
