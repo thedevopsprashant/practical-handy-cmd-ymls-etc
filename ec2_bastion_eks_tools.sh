@@ -124,6 +124,13 @@ add_user_to_docker_group() {
 }
 run_step "Add user to docker group" add_user_to_docker_group
 
+#Install java 17 on ubuntu
+sudo apt install openjdk-17-jdk -y
+
+
+#Install maven on ubuntu
+sudo apt install maven -y
+
 ########################################
 # Verify installations
 ########################################
@@ -135,6 +142,8 @@ command -v eksctl && eksctl version
 command -v helm && helm version
 command -v terraform && terraform version
 command -v docker && docker --version
+command -v java && java -version
+command -v mvn && mvn -version
 
 echo -e "\n===== Installation Completed ====="
 echo "Logs saved in $LOG_FILE"
